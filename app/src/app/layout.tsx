@@ -60,6 +60,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full flex flex-col">
+        {/* Sets the theme class before first paint so night walkers never
+            get a flash of the white daylight UI. Mirrors resolveTheme()
+            in theme-provider.tsx; runs before React hydrates, and touches
+            only <html>, so it can't cause a hydration mismatch. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('yellow-theme');if(t!=='light'&&t!=='dark'){var h=new Date().getHours();t=(h>=19||h<5)?'dark':'light';}var e=document.documentElement;e.classList.toggle('dark',t==='dark');e.style.colorScheme=t;}catch(e){}})();`,
+          }}
+        />
         <ThemeProvider>
           <OfflineBanner />
           {children}

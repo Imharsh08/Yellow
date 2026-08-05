@@ -108,7 +108,7 @@ export default function DietPage() {
             nearest medical point. Heat exhaustion gets serious quickly.
           </p>
           <Link
-            href="/map?category=medical_point"
+            href="/services/medical_point"
             className="mt-3 inline-flex h-11 items-center gap-2 rounded-full bg-on-error-container px-4 font-semibold text-error-container"
           >
             <span className="material-symbols-outlined text-[18px]" aria-hidden="true">

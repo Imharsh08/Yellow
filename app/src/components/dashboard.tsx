@@ -9,9 +9,11 @@ import type { Checkpoint, Route, UserProgress } from "@/lib/types";
 import { WeatherCard } from "@/components/weather-card";
 import { AnimatedNumber } from "@/components/animated-number";
 
+// Each card opens the nearby list for that category; the map is one tap
+// further in. While walking, "what's closest" is the question being asked.
 const SERVICES = [
   {
-    href: "/map?category=bhojan_shivir",
+    href: "/services/bhojan_shivir",
     icon: "restaurant",
     title: "Bhojan Shivir",
     sub: "Free meals",
@@ -19,7 +21,7 @@ const SERVICES = [
     fg: "text-tertiary",
   },
   {
-    href: "/map?category=medical_point",
+    href: "/services/medical_point",
     icon: "local_hospital",
     title: "Medical Point",
     sub: "First aid",
@@ -27,7 +29,7 @@ const SERVICES = [
     fg: "text-error",
   },
   {
-    href: "/map?category=charging_point",
+    href: "/services/charging_point",
     icon: "battery_charging_full",
     title: "Charging",
     sub: "Power banks",
@@ -35,7 +37,7 @@ const SERVICES = [
     fg: "text-secondary",
   },
   {
-    href: "/map?category=rush_area",
+    href: "/services/rush_area",
     icon: "groups",
     title: "Rush Area",
     sub: "Crowd status",
@@ -235,7 +237,7 @@ export function Dashboard({
           ))}
 
           <Link
-            href="/map?category=personal_vlog"
+            href="/feed"
             className="col-span-2 flex min-h-touch-target items-center gap-4 rounded-xl border border-outline-variant/30 bg-surface p-4 shadow-sm transition-transform duration-200 active:scale-95"
           >
             <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-container">

@@ -25,11 +25,16 @@ export default async function MapPage({
       ? (raw as PoiCategory)
       : null;
 
+  // Set when arriving from the services list: focus and open this pin.
+  const focusPoiId = typeof params.poi === "string" ? params.poi : null;
+
   // Newest first, capped — the map only renders what's in view anyway, and
   // an unbounded fetch would be punishing on a 3G connection.
+  // Vlogs are excluded: they're stories, not places, and live in /feed.
   const { data: pois } = await supabase
     .from("poi_feed")
     .select("*")
+    .neq("category", "personal_vlog")
     .order("created_at", { ascending: false })
     .limit(500);
 
@@ -44,6 +49,7 @@ export default async function MapPage({
       <MapView
         pois={(pois as PoiFeedItem[]) ?? []}
         initialCategory={initialCategory}
+        focusPoiId={focusPoiId}
         currentUserId={user.id}
         fallbackCenter={
           route

@@ -24,9 +24,8 @@ export const useTheme = () => useContext(ThemeContext);
 
 const STORAGE_KEY = "yellow-theme";
 
-function resolveInitialTheme(): Theme {
-  if (typeof window === "undefined") return "light";
-
+/** Browser-only. Never call during render — it would break hydration. */
+function resolveTheme(): Theme {
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === "light" || stored === "dark") return stored;
 
@@ -42,10 +41,16 @@ function resolveInitialTheme(): Theme {
  * An explicit choice always wins over the time heuristic.
  */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Resolved in a lazy initialiser rather than an effect so the first
-  // paint already carries the right theme (no flash of the wrong mode).
-  // SSR has no `window`, so it starts light and syncs on mount below.
-  const [theme, setTheme] = useState<Theme>(resolveInitialTheme);
+  // Starts "light" on both server and client so hydration matches, then
+  // resolves the stored/time-based preference on mount. The inline script
+  // in layout.tsx has already set the correct class on <html>, so there is
+  // no flash of the wrong theme despite this starting light.
+  const [theme, setTheme] = useState<Theme>("light");
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTheme(resolveTheme());
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");

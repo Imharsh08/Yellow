@@ -5,36 +5,30 @@ import type { LatLng } from "@/lib/geo";
 
 const CACHE_KEY = "yellow-last-position";
 
-function readCachedState(): GeoState {
-  const empty: GeoState = {
-    position: null,
-    accuracy: null,
-    error: null,
-    loading: true,
-    stale: false,
-  };
+const EMPTY_STATE: GeoState = {
+  position: null,
+  accuracy: null,
+  error: null,
+  loading: true,
+  stale: false,
+};
 
-  if (typeof window === "undefined") return empty;
-
-  if (!("geolocation" in navigator)) {
-    return {
-      ...empty,
-      loading: false,
-      error: "Location isn't available on this device.",
-    };
-  }
-
+/**
+ * Reads the last cached fix. Browser-only — never call during render, or
+ * the server and client produce different markup.
+ */
+function readCachedPosition(): LatLng | null {
   try {
     const raw = window.localStorage.getItem(CACHE_KEY);
-    if (!raw) return empty;
+    if (!raw) return null;
     const cached = JSON.parse(raw) as LatLng;
     if (typeof cached?.lat !== "number" || typeof cached?.lng !== "number") {
-      return empty;
+      return null;
     }
-    return { ...empty, position: cached, stale: true };
+    return cached;
   } catch {
     // Corrupt cache is not worth surfacing; a live fix will replace it.
-    return empty;
+    return null;
   }
 }
 
@@ -56,18 +50,39 @@ export interface GeoState {
  * (NFR §7: "cache last known route state").
  */
 export function useGeolocation(enabled = true): GeoState {
-  // Seed from the cached fix in a lazy initialiser so the counter is
-  // never blank on a cold, signal-less start, without a setState in the
-  // effect body.
-  const [state, setState] = useState<GeoState>(readCachedState);
+  // Always starts empty so the server-rendered markup and the client's
+  // first render agree. localStorage and `navigator` are read in the
+  // effect below, after hydration — reading them during render caused a
+  // hydration mismatch ("Finding your location…" vs "Last known position").
+  const [state, setState] = useState<GeoState>(EMPTY_STATE);
   const watchId = useRef<number | null>(null);
 
+  /* These two setState calls read browser-only APIs (`navigator` and
+     localStorage) that cannot be touched during render without breaking
+     hydration. That is precisely the "synchronise with an external
+     system" case effects exist for, so the rule is disabled here
+     deliberately rather than worked around. */
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!enabled) return;
 
-    // Device support is known at init time, so it is resolved in the
-    // initialiser rather than here.
-    if (!("geolocation" in navigator)) return;
+    if (!("geolocation" in navigator)) {
+      setState({
+        ...EMPTY_STATE,
+        loading: false,
+        error: "Location isn't available on this device.",
+      });
+      return;
+    }
+
+    // Paint the cached fix immediately so the counter is never blank on a
+    // cold, signal-less start, then let the live watch replace it.
+    const cached = readCachedPosition();
+    if (cached) {
+      setState((s) =>
+        s.position ? s : { ...s, position: cached, stale: true },
+      );
+    }
 
     watchId.current = navigator.geolocation.watchPosition(
       (pos) => {
@@ -114,6 +129,7 @@ export function useGeolocation(enabled = true): GeoState {
       }
     };
   }, [enabled]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return state;
 }

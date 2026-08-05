@@ -10,6 +10,10 @@ import { haversineKm, type LatLng } from "@/lib/geo";
 import { POI_META, POI_CATEGORIES, type PoiCategory, type PoiFeedItem } from "@/lib/types";
 import { PoiDetailSheet } from "@/components/poi-detail-sheet";
 
+// Vlogs are stories rather than places, so they live in /feed and are
+// neither fetched for nor filterable on the map.
+const MAP_CATEGORIES = POI_CATEGORIES.filter((c) => c !== "personal_vlog");
+
 /**
  * Public map (FR-5).
  *
@@ -20,11 +24,13 @@ import { PoiDetailSheet } from "@/components/poi-detail-sheet";
 export function MapView({
   pois,
   initialCategory,
+  focusPoiId,
   currentUserId,
   fallbackCenter,
 }: {
   pois: PoiFeedItem[];
   initialCategory: PoiCategory | null;
+  focusPoiId?: string | null;
   currentUserId: string;
   fallbackCenter: LatLng;
 }) {
@@ -36,7 +42,11 @@ export function MapView({
 
   const { position } = useGeolocation();
   const [active, setActive] = useState<PoiCategory | null>(initialCategory);
-  const [selected, setSelected] = useState<PoiFeedItem | null>(null);
+  // Arriving from the services list with ?poi=<id> opens that pin's sheet
+  // straight away, so it's seeded here rather than set from an effect.
+  const [selected, setSelected] = useState<PoiFeedItem | null>(
+    () => pois.find((p) => p.id === focusPoiId) ?? null,
+  );
   const [ready, setReady] = useState(false);
 
   const visible = useMemo(
@@ -83,6 +93,23 @@ export function MapView({
       map.current = null;
     };
   }, [fallbackCenter.lat, fallbackCenter.lng]);
+
+  // --- arriving from the services list: fly to that pin ---
+  useEffect(() => {
+    if (!map.current || !ready || !focusPoiId) return;
+
+    const target = pois.find((p) => p.id === focusPoiId);
+    if (!target) return;
+
+    // Claim the centring slot so the user's own location doesn't yank the
+    // viewport away from the pin they explicitly chose.
+    didCenter.current = true;
+    map.current.flyTo({
+      center: [target.lng, target.lat],
+      zoom: 15,
+      duration: 1000,
+    });
+  }, [focusPoiId, pois, ready]);
 
   // --- centre on the walker once we have a fix ---
   useEffect(() => {
@@ -164,7 +191,7 @@ export function MapView({
             active={active === null}
             onClick={() => setActive(null)}
           />
-          {POI_CATEGORIES.map((c) => (
+          {MAP_CATEGORIES.map((c) => (
             <FilterChip
               key={c}
               label={POI_META[c].label}

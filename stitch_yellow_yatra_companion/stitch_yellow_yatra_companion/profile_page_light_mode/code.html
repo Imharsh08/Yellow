@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yellow Yatra - User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-container": "#e2a900",
+                      "surface": "#fcf9f8",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#8f4e00",
+                      "secondary-fixed": "#ffdbd1",
+                      "tertiary": "#795900",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "on-background": "#1c1b1b",
+                      "surface-dim": "#dcd9d9",
+                      "primary-fixed-dim": "#ffb77a",
+                      "primary-fixed": "#ffdcc2",
+                      "on-tertiary-fixed": "#261a00",
+                      "surface-container-highest": "#e5e2e1",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-surface-variant": "#554336",
+                      "on-secondary-fixed": "#3b0900",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#693800",
+                      "outline-variant": "#dbc2b0",
+                      "on-tertiary-container": "#594000",
+                      "secondary-container": "#d83900",
+                      "inverse-surface": "#313030",
+                      "on-error": "#ffffff",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#ffb5a0",
+                      "tertiary-fixed": "#ffdfa0",
+                      "surface-container-low": "#f6f3f2",
+                      "on-secondary-fixed-variant": "#872000",
+                      "surface-container": "#f0eded",
+                      "on-secondary-container": "#fffbff",
+                      "on-surface": "#1c1b1b",
+                      "on-primary-fixed-variant": "#6d3a00",
+                      "outline": "#887364",
+                      "background": "#fcf9f8",
+                      "surface-variant": "#e5e2e1",
+                      "surface-container-high": "#eae7e7",
+                      "on-primary-fixed": "#2e1500",
+                      "tertiary-fixed-dim": "#fbbc00",
+                      "primary-container": "#ff9933",
+                      "on-primary": "#ffffff",
+                      "inverse-primary": "#ffb77a",
+                      "secondary": "#ad2c00",
+                      "surface-tint": "#8f4e00",
+                      "on-secondary": "#ffffff",
+                      "surface-bright": "#fcf9f8",
+                      "error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-lg": "40px",
+                      "gutter": "16px",
+                      "stack-sm": "12px",
+                      "base": "8px",
+                      "margin-desktop": "40px",
+                      "touch-target": "56px",
+                      "stack-md": "24px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen pb-[72px] md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-inverse-surface shadow-sm">
+<div class="flex justify-between items-center h-touch-target px-margin-mobile">
+<button aria-label="Menu" class="text-primary dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-200 w-10 h-10 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">flare</span>
+</button>
+<h1 class="font-display-lg text-display-lg text-primary-container dark:text-primary-fixed tracking-tight">Yellow</h1>
+<button aria-label="Toggle Dark Mode" class="text-primary dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-200 w-10 h-10 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[72px] px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto space-y-stack-lg pb-stack-lg">
+<!-- Profile Header Section -->
+<section class="mt-stack-md flex flex-col items-center text-center space-y-stack-sm animate-fade-in-up">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full bg-primary-container flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+<span class="font-display-lg text-display-lg text-on-primary-container">AS</span>
+</div>
+<button class="absolute bottom-0 right-0 w-10 h-10 bg-surface rounded-full shadow-md flex items-center justify-center border-2 border-surface hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-primary text-xl">edit</span>
+</button>
+</div>
+<div class="space-y-base">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Aarav Sharma</h2>
+<div class="inline-flex items-center space-x-2 bg-primary-fixed rounded-full px-4 py-1.5 border border-primary-fixed-dim">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-caps text-label-caps text-primary">Verified Pilgrim</span>
+</div>
+</div>
+</section>
+<!-- Current Yatra Stats Card -->
+<section class="animate-fade-in-up" style="animation-delay: 100ms;">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_8px_30px_rgb(255,153,51,0.15)] p-6 border border-surface-container-high relative overflow-hidden">
+<!-- Decorative subtle element -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-stack-sm">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">route</span>
+                        Current Yatra
+                    </h3>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps px-3 py-1 rounded-full shadow-sm">Active</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface p-4 rounded-lg border border-surface-container shadow-sm flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">Destination</span>
+<span class="font-title-md text-title-md text-primary">Meerut</span>
+</div>
+<div class="bg-surface p-4 rounded-lg border border-surface-container shadow-sm flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">Start Point</span>
+<span class="font-title-md text-title-md text-on-surface">Haridwar</span>
+</div>
+<div class="bg-surface p-4 rounded-lg border border-surface-container shadow-sm flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">Days Active</span>
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg text-primary tracking-tighter">4</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Days</span>
+</div>
+</div>
+</div>
+<!-- Simple Progress indicator -->
+<div class="mt-stack-sm pt-stack-sm border-t border-surface-container-high">
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant mb-2">
+<span>Progress</span>
+<span>~60%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-[60%] shadow-[0_0_10px_rgba(255,153,51,0.5)]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Settings & Actions List -->
+<section class="animate-fade-in-up" style="animation-delay: 200ms;">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container-high overflow-hidden">
+<ul class="divide-y divide-surface-container-high">
+<li>
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors group min-h-[56px]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error-container text-on-error-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">emergency</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Emergency Contacts</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors group min-h-[56px]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Privacy Settings</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors group min-h-[56px]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">help</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Help &amp; Support</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</li>
+</ul>
+</div>
+</section>
+<!-- Logout Button -->
+<section class="pt-base animate-fade-in-up" style="animation-delay: 300ms;">
+<button class="w-full h-touch-target rounded-full border-2 border-outline text-on-surface font-title-md text-title-md flex items-center justify-center gap-2 hover:bg-surface-container-low active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </button>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface dark:bg-inverse-surface shadow-[0_-2px_10px_rgba(255,153,51,0.15)] pb-safe">
+<div class="flex justify-around items-center h-[72px] px-2">
+<!-- Home -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<!-- Map -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1">map</span>
+<span class="font-label-caps text-label-caps">Map</span>
+</button>
+<!-- Roadmap -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1">route</span>
+<span class="font-label-caps text-label-caps">Roadmap</span>
+</button>
+<!-- Profile (ACTIVE) -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container dark:bg-primary-fixed dark:text-on-primary-fixed rounded-full px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</button>
+</div>
+</nav>
+<style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.4s ease-out forwards;
+            opacity: 0;
+        }
+        /* Handle safe area for bottom nav on modern devices */
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</body></html>

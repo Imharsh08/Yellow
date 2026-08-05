@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Roadmap - Yellow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#313030",
+                        "primary-fixed": "#ffdcc2",
+                        "secondary-fixed": "#ffdbd1",
+                        "on-surface": "#1c1b1b",
+                        "primary-container": "#ff9933",
+                        "on-primary-container": "#693800",
+                        "surface-container-highest": "#e5e2e1",
+                        "tertiary-fixed-dim": "#fbbc00",
+                        "on-primary-fixed": "#2e1500",
+                        "inverse-primary": "#ffb77a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#6d3a00",
+                        "on-tertiary-container": "#594000",
+                        "on-tertiary-fixed": "#261a00",
+                        "surface-container-high": "#eae7e7",
+                        "secondary-container": "#d83900",
+                        "on-secondary-fixed": "#3b0900",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#e2a900",
+                        "tertiary-fixed": "#ffdfa0",
+                        "surface-tint": "#8f4e00",
+                        "surface": "#fcf9f8",
+                        "primary": "#8f4e00",
+                        "on-secondary-container": "#fffbff",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#dcd9d9",
+                        "background": "#fcf9f8",
+                        "on-secondary-fixed-variant": "#872000",
+                        "surface-variant": "#e5e2e1",
+                        "on-background": "#1c1b1b",
+                        "outline-variant": "#dbc2b0",
+                        "secondary-fixed-dim": "#ffb5a0",
+                        "primary-fixed-dim": "#ffb77a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-surface-variant": "#554336",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "outline": "#887364",
+                        "error": "#ba1a1a",
+                        "surface-container": "#f0eded",
+                        "secondary": "#ad2c00",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary": "#795900"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "40px",
+                        "margin-mobile": "20px",
+                        "base": "8px",
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "touch-target": "56px",
+                        "gutter": "16px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .winding-path {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, theme('colors.primary-container') 50%, theme('colors.surface-variant') 50%);
+            background-size: 100% 20px; /* Adjust for winding effect if SVG is used later, keeping simple line for now */
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen pb-[92px]"> <!-- Added pb to account for BottomNavBar -->
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-inverse-surface shadow-sm shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center h-touch-target px-margin-mobile">
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="flare">flare</span>
+</button>
+<h1 class="font-display-lg text-display-lg text-primary-container dark:text-primary-fixed">Yellow</h1>
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+</div>
+</header>
+<!-- Main Content: Roadmap -->
+<main class="pt-[80px] px-margin-mobile relative overflow-hidden">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-stack-md text-center mt-stack-md">Your Pilgrimage</h2>
+<!-- The Winding Path Container -->
+<div class="relative min-h-[800px] flex flex-col items-center py-stack-lg">
+<!-- Central Line (Simplified Winding Path) -->
+<div class="absolute w-1 h-full bg-surface-variant rounded-full left-1/2 transform -translate-x-1/2 -z-10">
+<!-- Active portion of the path -->
+<div class="w-full bg-primary-container rounded-full" style="height: 45%;"></div>
+</div>
+<!-- Milestone 1: Completed -->
+<div class="w-full flex justify-end pr-[55%] mb-stack-lg relative group cursor-pointer hover:opacity-90 transition-opacity">
+<!-- Connector to line -->
+<div class="absolute right-[50%] top-1/2 w-4 h-0.5 bg-primary-container z-0"></div>
+<div class="bg-surface shadow-[0_4px_15px_rgba(255,153,51,0.15)] rounded-xl p-4 w-[160px] border border-primary-container/20 flex flex-col items-end text-right z-10 relative">
+<!-- Solid Saffron Marker -->
+<div class="absolute -right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-primary-container border-4 border-surface shadow-md z-20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="check" style="font-size: 12px; font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">0 km</span>
+<h3 class="font-title-md text-title-md text-on-surface">St. Jean</h3>
+<div class="flex items-center gap-1 mt-2 text-primary-container">
+<span class="material-symbols-outlined" data-icon="footprint" style="font-size: 16px;">footprint</span>
+</div>
+</div>
+</div>
+<!-- Milestone 2: Completed -->
+<div class="w-full flex justify-start pl-[55%] mb-stack-lg relative group cursor-pointer hover:opacity-90 transition-opacity">
+<div class="absolute left-[50%] top-1/2 w-4 h-0.5 bg-primary-container z-0"></div>
+<div class="bg-surface shadow-[0_4px_15px_rgba(255,153,51,0.15)] rounded-xl p-4 w-[160px] border border-primary-container/20 flex flex-col items-start text-left z-10 relative">
+<div class="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-primary-container border-4 border-surface shadow-md z-20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="check" style="font-size: 12px; font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">25 km</span>
+<h3 class="font-title-md text-title-md text-on-surface">Roncesvalles</h3>
+<div class="flex items-center gap-1 mt-2 text-primary-container">
+<span class="material-symbols-outlined" data-icon="footprint" style="font-size: 16px;">footprint</span>
+<span class="material-symbols-outlined" data-icon="footprint" style="font-size: 16px;">footprint</span>
+</div>
+</div>
+</div>
+<!-- Milestone 3: Active/Current -->
+<div class="w-full flex justify-center mb-stack-lg relative z-20">
+<div class="bg-primary-container text-on-primary-container rounded-full px-6 py-3 shadow-[0_8px_24px_rgba(255,69,0,0.3)] flex items-center gap-3 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="directions_walk" style="font-variation-settings: 'FILL' 1;">directions_walk</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps opacity-90">Current Location</span>
+<span class="font-title-md text-title-md font-bold">42 km</span>
+</div>
+</div>
+</div>
+<!-- Milestone 4: Upcoming (Outlined) -->
+<div class="w-full flex justify-end pr-[55%] mb-stack-lg relative group cursor-pointer hover:opacity-90 transition-opacity opacity-70">
+<div class="absolute right-[50%] top-1/2 w-4 h-0.5 bg-surface-variant z-0"></div>
+<div class="bg-surface shadow-sm rounded-xl p-4 w-[160px] border border-outline-variant flex flex-col items-end text-right z-10 relative">
+<!-- Outlined Marker -->
+<div class="absolute -right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-surface border-2 border-primary-container shadow-sm z-20"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">48 km</span>
+<h3 class="font-title-md text-title-md text-on-surface">Zubiri</h3>
+</div>
+</div>
+<!-- Milestone 5: Upcoming (Outlined) -->
+<div class="w-full flex justify-start pl-[55%] mb-stack-lg relative group cursor-pointer hover:opacity-90 transition-opacity opacity-70">
+<div class="absolute left-[50%] top-1/2 w-4 h-0.5 bg-surface-variant z-0"></div>
+<div class="bg-surface shadow-sm rounded-xl p-4 w-[160px] border border-outline-variant flex flex-col items-start text-left z-10 relative">
+<div class="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-surface border-2 border-surface-variant shadow-sm z-20"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">70 km</span>
+<h3 class="font-title-md text-title-md text-on-surface">Pamplona</h3>
+</div>
+</div>
+<!-- Goal -->
+<div class="mt-stack-md flex flex-col items-center">
+<div class="w-12 h-12 rounded-full border-2 border-dashed border-primary-container flex items-center justify-center text-primary-container mb-2">
+<span class="material-symbols-outlined" data-icon="flag">flag</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Santiago de Compostela</span>
+<span class="font-title-md text-title-md text-on-surface">780 km</span>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (SOS) - Hidden on Roadmap as it's a structural view, but keeping the spec in mind if it were a dashboard -->
+<!-- Suppressed based on instructions for structural/navigation screens unless specific action needed -->
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface dark:bg-inverse-surface shadow-[0_-2px_10px_rgba(255,153,51,0.15)] flex justify-around items-center h-[72px] px-2 pb-[env(safe-area-inset-bottom)]">
+<!-- Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<!-- Map (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="map">map</span>
+<span class="font-label-caps text-label-caps">Map</span>
+</a>
+<!-- Roadmap (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container dark:bg-primary-fixed dark:text-on-primary-fixed rounded-full px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="route" style="font-variation-settings: 'FILL' 1;">route</span>
+<span class="font-label-caps text-label-caps">Roadmap</span>
+</a>
+<!-- Profile (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:opacity-80 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+</body></html>

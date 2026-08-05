@@ -1,0 +1,44 @@
+{
+  "name": "Yellow — Kanwar Yatra Companion",
+  "short_name": "Yellow",
+  "description": "Track your Kanwar Yatra, find bhojan shivirs, medical points and charging spots shared by fellow kanwariyas.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fcf9f8",
+  "theme_color": "#ff9933",
+  "categories": ["travel", "navigation", "lifestyle"],
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Add a point",
+      "short_name": "Add point",
+      "url": "/report"
+    },
+    {
+      "name": "Public map",
+      "short_name": "Map",
+      "url": "/map"
+    }
+  ]
+}

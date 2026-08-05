@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yellow - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-surface": "#313030",
+                      "primary-fixed": "#ffdcc2",
+                      "secondary-fixed": "#ffdbd1",
+                      "on-surface": "#1c1b1b",
+                      "primary-container": "#ff9933",
+                      "on-primary-container": "#693800",
+                      "surface-container-highest": "#e5e2e1",
+                      "tertiary-fixed-dim": "#fbbc00",
+                      "on-primary-fixed": "#2e1500",
+                      "inverse-primary": "#ffb77a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-low": "#f6f3f2",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#6d3a00",
+                      "on-tertiary-container": "#594000",
+                      "on-tertiary-fixed": "#261a00",
+                      "surface-container-high": "#eae7e7",
+                      "secondary-container": "#d83900",
+                      "on-secondary-fixed": "#3b0900",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#e2a900",
+                      "tertiary-fixed": "#ffdfa0",
+                      "surface-tint": "#8f4e00",
+                      "surface": "#fcf9f8",
+                      "primary": "#8f4e00",
+                      "on-secondary-container": "#fffbff",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#dcd9d9",
+                      "background": "#fcf9f8",
+                      "on-secondary-fixed-variant": "#872000",
+                      "surface-variant": "#e5e2e1",
+                      "on-background": "#1c1b1b",
+                      "outline-variant": "#dbc2b0",
+                      "secondary-fixed-dim": "#ffb5a0",
+                      "primary-fixed-dim": "#ffb77a",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-surface-variant": "#554336",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "outline": "#887364",
+                      "error": "#ba1a1a",
+                      "surface-container": "#f0eded",
+                      "secondary": "#ad2c00",
+                      "surface-bright": "#fcf9f8",
+                      "tertiary": "#795900"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-lg": "40px",
+                      "margin-mobile": "20px",
+                      "base": "8px",
+                      "stack-sm": "12px",
+                      "stack-md": "24px",
+                      "touch-target": "56px",
+                      "gutter": "16px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen relative overflow-hidden font-body-md flex flex-col justify-between">
+<!-- Shader Background -->
+<div class="absolute inset-0 z-0">
+<!-- STITCH_SHADER_START:ANIMATION_2 class="absolute inset-0 w-full h-full opacity-60" -->
+<div class="absolute inset-0 w-full h-full opacity-60" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_2" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_2');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+varying vec2 v_texCoord;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Create a gentle pulsing glow effect
+    float pulse = (sin(u_time * 1.5) * 0.5 + 0.5) * 0.1;
+    
+    // Background color: Saffron to Orange gradient
+    vec3 color1 = vec3(1.0, 0.6, 0.2); // Saffron
+    vec3 color2 = vec3(1.0, 0.27, 0.0); // Deep Orange
+    
+    vec3 finalColor = mix(color1, color2, uv.y + pulse);
+    
+    // Add some subtle animated "dust" or light particles
+    float noise = fract(sin(dot(uv + u_time * 0.05, vec2(12.9898, 78.233))) * 43758.5453);
+    if(noise > 0.98) {
+        finalColor += 0.05;
+    }
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_2 -->
+</div>
+<!-- Main Content Area -->
+<main class="relative z-10 flex-grow flex flex-col items-center justify-center px-margin-mobile pt-stack-lg">
+<!-- App Identity -->
+<div class="flex flex-col items-center space-y-stack-sm text-center transform transition-transform duration-700 ease-out translate-y-0 opacity-100" id="identity-container">
+<!-- Leaf Logo (Minimal CSS representation) -->
+<div class="w-24 h-24 bg-primary-container rounded-tr-full rounded-bl-full rounded-tl-xl rounded-br-xl shadow-[0_8px_30px_rgba(255,153,51,0.4)] flex items-center justify-center mb-stack-md">
+<span class="material-symbols-outlined text-on-primary-container !text-5xl" style="font-variation-settings: 'FILL' 1;">
+                    energy_savings_leaf
+                </span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Yellow</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xs mt-2">Your safe companion for the Yatra.</p>
+</div>
+</main>
+<!-- Action Area -->
+<div class="relative z-10 px-margin-mobile pb-stack-lg pt-stack-md w-full">
+<!-- Floating Glassmorphic Container for Actions -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-surface-container-highest flex flex-col gap-stack-sm">
+<button class="w-full h-touch-target bg-primary-container text-on-surface font-title-md text-title-md rounded-full flex items-center justify-center gap-3 shadow-[0_4px_15px_rgba(255,153,51,0.2)] hover:bg-inverse-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">login</span>
+                Continue with Google
+            </button>
+<div class="text-center mt-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+                    By continuing, you agree to our Terms
+                </span>
+</div>
+</div>
+</div>
+<script>
+        // Simple entrance animation
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById('identity-container');
+            container.style.transform = 'translateY(20px)';
+            container.style.opacity = '0';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                container.style.transform = 'translateY(0)';
+                container.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body></html>

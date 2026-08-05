@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+/* Material Symbols is loaded via <link> in layout.tsx, not with an
+   @import here. Turbopack drops a remote @import from the bundled
+   stylesheet without failing the build, which silently breaks every
+   icon in the app. */
+
+/* ============================================================
+   Saffron Path design system
+   Ported from stitch_yellow_yatra_companion/saffron_path/DESIGN.md
+   Tailwind v4 uses CSS-based theming (@theme), not tailwind.config.js
+   ============================================================ */
+
+@theme {
+  /* --- Light (Daylight mode) --- */
+  --color-surface: #fcf9f8;
+  --color-surface-dim: #dcd9d9;
+  --color-surface-bright: #fcf9f8;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container: #f0eded;
+  --color-surface-container-high: #eae7e7;
+  --color-surface-container-highest: #e5e2e1;
+  --color-on-surface: #1c1b1b;
+  --color-on-surface-variant: #554336;
+  --color-inverse-surface: #313030;
+  --color-inverse-on-surface: #f3f0ef;
+  --color-outline: #887364;
+  --color-outline-variant: #dbc2b0;
+  --color-surface-tint: #8f4e00;
+
+  --color-primary: #8f4e00;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ff9933;
+  --color-on-primary-container: #693800;
+  --color-inverse-primary: #ffb77a;
+
+  --color-secondary: #ad2c00;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d83900;
+  --color-on-secondary-container: #fffbff;
+
+  --color-tertiary: #795900;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #e2a900;
+  --color-on-tertiary-container: #594000;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-primary-fixed: #ffdcc2;
+  --color-primary-fixed-dim: #ffb77a;
+  --color-on-primary-fixed: #2e1500;
+  --color-on-primary-fixed-variant: #6d3a00;
+  --color-secondary-fixed: #ffdbd1;
+  --color-secondary-fixed-dim: #ffb5a0;
+  --color-on-secondary-fixed: #3b0900;
+  --color-on-secondary-fixed-variant: #872000;
+  --color-tertiary-fixed: #ffdfa0;
+  --color-tertiary-fixed-dim: #fbbc00;
+  --color-on-tertiary-fixed: #261a00;
+  --color-on-tertiary-fixed-variant: #5c4300;
+
+  --color-background: #fcf9f8;
+  --color-on-background: #1c1b1b;
+  --color-surface-variant: #e5e2e1;
+
+  /* SOS / emergency — reserved exclusively for emergency per DESIGN.md */
+  --color-sos: #ff4500;
+
+  /* --- Typography (Inter, oversized for legibility while walking) --- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 56px;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 800;
+
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 700;
+
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 36px;
+  --text-headline-lg-mobile--font-weight: 700;
+
+  --text-title-md: 20px;
+  --text-title-md--line-height: 28px;
+  --text-title-md--font-weight: 600;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 26px;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 16px;
+  --text-label-caps--letter-spacing: 0.05em;
+  --text-label-caps--font-weight: 700;
+
+  /* --- Spacing (8px linear scale) --- */
+  --spacing-base: 8px;
+  --spacing-touch-target: 56px;
+  --spacing-gutter: 16px;
+  --spacing-margin-mobile: 20px;
+  --spacing-margin-desktop: 40px;
+  --spacing-stack-sm: 12px;
+  --spacing-stack-md: 24px;
+  --spacing-stack-lg: 40px;
+
+  /* --- Radii: avoid sharp corners entirely --- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+/* ============================================================
+   Night Walking mode — deep navy-black with warm amber accents,
+   soft glows to preserve night vision. Applied via .dark class.
+   ============================================================ */
+.dark {
+  --color-surface: #0a0e14;
+  --color-surface-dim: #05080c;
+  --color-surface-bright: #1f2731;
+  --color-surface-container-lowest: #05080c;
+  --color-surface-container-low: #10151d;
+  --color-surface-container: #161b22;
+  --color-surface-container-high: #1c232c;
+  --color-surface-container-highest: #232b36;
+  --color-on-surface: #e6e1dd;
+  --color-on-surface-variant: #cfc3b8;
+  --color-inverse-surface: #e6e1dd;
+  --color-inverse-on-surface: #1c1b1b;
+  --color-outline: #9c8878;
+  --color-outline-variant: #4f4237;
+
+  --color-primary: #ffbf00;
+  --color-on-primary: #2e1500;
+  --color-primary-container: #ffbf00;
+  --color-on-primary-container: #2e1500;
+
+  --color-secondary: #ffb5a0;
+  --color-on-secondary: #3b0900;
+  --color-secondary-container: #872000;
+  --color-on-secondary-container: #ffdbd1;
+
+  --color-tertiary: #fbbc00;
+  --color-on-tertiary: #261a00;
+  --color-tertiary-container: #5c4300;
+  --color-on-tertiary-container: #ffdfa0;
+
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  --color-background: #0a0e14;
+  --color-on-background: #e6e1dd;
+  --color-surface-variant: #232b36;
+}
+
+html {
+  /* Prevent iOS text-size adjust from breaking the oversized type scale */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-sans);
+  font-size: var(--text-body-md);
+  line-height: var(--text-body-md--line-height);
+  -webkit-font-smoothing: antialiased;
+  /* Users are walking — avoid accidental pull-to-refresh mid-journey */
+  overscroll-behavior-y: contain;
+}
+
+/* Respect device safe areas (notch / gesture bar) */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Material Symbols icon font, loaded in layout.tsx */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.icon-filled {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* SOS pulse — the most visible element on screen at all times */
+@keyframes sos-ping {
+  75%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.animate-sos-ping {
+  animation: sos-ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sos-ping {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* MapLibre attribution must stay legible in both themes */
+.maplibregl-ctrl-attrib {
+  font-size: 10px !important;
+}

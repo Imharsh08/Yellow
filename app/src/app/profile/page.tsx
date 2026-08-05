@@ -47,9 +47,21 @@ export default async function ProfilePage() {
           <h2 className="mt-stack-sm text-title-md font-semibold text-on-surface">
             {profile.full_name}
           </h2>
-          <p className="text-body-md text-on-surface-variant">
-            Walking to {profile.destination}
-          </p>
+          <Link
+            href="/profile/destination"
+            className="mt-1 flex items-center gap-1 rounded-full px-3 py-1 text-body-md text-on-surface-variant active:scale-95"
+          >
+            Walking to{" "}
+            <span className="font-semibold text-on-surface">
+              {profile.destination}
+            </span>
+            <span
+              className="material-symbols-outlined text-[16px] text-primary"
+              aria-hidden="true"
+            >
+              edit
+            </span>
+          </Link>
         </section>
 
         <section className="grid grid-cols-2 gap-gutter">
@@ -104,6 +116,11 @@ export default async function ProfilePage() {
         </section>
 
         <section className="mt-stack-md flex flex-col divide-y divide-outline-variant/30 overflow-hidden rounded-xl border border-outline-variant/30 bg-surface">
+          <Row
+            href="/profile/destination"
+            icon="temple_hindu"
+            label="Change destination"
+          />
           <Row href="/diet" icon="nutrition" label="Yatra diet plan" />
           <Row href="/map" icon="map" label="Public map" />
         </section>

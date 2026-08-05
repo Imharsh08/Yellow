@@ -51,6 +51,8 @@ is step 5.
 
 ## 4. Deploy (~10 min)
 
+### Vercel (current target)
+
 ```bash
 cd app
 npx vercel            # first run walks you through login + linking
@@ -59,6 +61,43 @@ npx vercel --prod
 
 When prompted, add the same two environment variables. Note the URL it
 gives you (e.g. `https://yellow-abc123.vercel.app`) — you need it next.
+
+Set **Root Directory** to `app` if you deploy via the Vercel dashboard
+rather than the CLI — the repo root holds the BRD and Stitch mockups, not
+the app.
+
+### Cloudflare — blocked, config kept for later
+
+`wrangler.jsonc` and `open-next.config.ts` are committed and correct, but
+**this app cannot deploy to Cloudflare Workers today**:
+
+- `src/proxy.ts` (auth gating + Supabase session refresh) runs on the
+  Node runtime. Next 16 mandates that and rejects `export const runtime`
+  in a proxy file.
+- The OpenNext Cloudflare adapter explicitly does not support Node
+  middleware.
+
+The two requirements are mutually exclusive, so the adapter build fails
+with `Node.js middleware is not currently supported`.
+
+Cloudflare Pages is doubly wrong for this app — Pages serves static files
+only, and every route here is server-rendered.
+
+**To switch once OpenNext adds Node middleware support:** confirm at
+<https://opennext.js.org/cloudflare> that the limitation is gone, then
+
+```bash
+npm run cf:preview    # test locally in the workerd runtime
+npm run cf:deploy
+```
+
+Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` as
+Worker variables, and add the Workers URL to Supabase → Authentication →
+URL Configuration.
+
+The alternative — deleting `proxy.ts` and gating auth in each page — works
+on Cloudflare but loses edge session refresh and makes it possible to
+ship an unprotected page by forgetting a check.
 
 ## 5. Google Sign-In (FR-1) (~15 min)
 

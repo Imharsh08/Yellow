@@ -17,11 +17,26 @@ export type Profile = {
   full_name: string;
   phone: string | null;
   destination: string;
+  /** Authoritative link; `destination` is the display label. */
+  destination_id: string | null;
   photo_url: string | null;
   onboarded_at: string | null;
   created_at: string;
   updated_at: string;
 }
+
+export type Destination = {
+  id: string;
+  slug: string | null;
+  name: string;
+  area: string | null;
+  description: string | null;
+  lat: number;
+  lng: number;
+  is_popular: boolean;
+  created_by: string | null;
+  created_at: string;
+};
 
 export type Route = {
   id: string;
@@ -36,6 +51,10 @@ export type Route = {
   total_km: number;
   is_active: boolean;
   created_at: string;
+  destination_id: string | null;
+  /** Null for curated routes shared by everyone; set for generated ones. */
+  owner_id: string | null;
+  is_generated: boolean;
 }
 
 export type Checkpoint = {
@@ -118,15 +137,38 @@ export type Database = {
         Update: Partial<Profile>;
         Relationships: [];
       };
+      destinations: {
+        Row: Destination;
+        Insert: Pick<Destination, "name" | "lat" | "lng"> &
+          Partial<Omit<Destination, "name" | "lat" | "lng">>;
+        Update: Partial<Destination>;
+        Relationships: [];
+      };
       routes: {
         Row: Route;
-        Insert: Omit<Route, "id" | "created_at"> & { id?: string };
+        Insert: Pick<
+          Route,
+          | "slug"
+          | "name"
+          | "origin_name"
+          | "origin_lat"
+          | "origin_lng"
+          | "dest_name"
+          | "dest_lat"
+          | "dest_lng"
+          | "total_km"
+        > &
+          Partial<Omit<Route, "id" | "created_at">> & { id?: string };
         Update: Partial<Route>;
         Relationships: [];
       };
       checkpoints: {
         Row: Checkpoint;
-        Insert: Omit<Checkpoint, "id" | "created_at"> & { id?: string };
+        Insert: Pick<
+          Checkpoint,
+          "route_id" | "seq" | "name" | "lat" | "lng" | "km_from_start"
+        > &
+          Partial<Omit<Checkpoint, "id" | "created_at">> & { id?: string };
         Update: Partial<Checkpoint>;
         Relationships: [];
       };

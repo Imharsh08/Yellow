@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getActiveRouteForUser } from "@/lib/route";
 import { BottomNav } from "@/components/bottom-nav";
 import { MapView } from "@/components/map-view";
 import type { PoiCategory, PoiFeedItem } from "@/lib/types";
@@ -38,11 +39,10 @@ export default async function MapPage({
     .order("created_at", { ascending: false })
     .limit(500);
 
-  const { data: route } = await supabase
-    .from("routes")
-    .select("*")
-    .eq("slug", "haridwar-meerut")
-    .single();
+  // Only needed for the fallback centre before GPS resolves; keyed to the
+  // user's own route so they don't open the map on a different corridor.
+  const active = await getActiveRouteForUser(user.id);
+  const route = active?.route ?? null;
 
   return (
     <>

@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "yellow-kanwar-yatra",
+  "main": ".open-next/worker.js",
+
+  // Required for Next.js SSR on Workers: the adapter's server bundle
+  // relies on Node built-ins (crypto, stream, buffer).
+  "compatibility_date": "2025-03-25",
+  "compatibility_flags": ["nodejs_compat"],
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

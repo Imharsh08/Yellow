@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { OnboardingForm } from "./onboarding-form";
+import { searchDestinations } from "./search-destinations";
 
 export default async function OnboardingPage() {
   const supabase = await createClient();
@@ -25,10 +26,7 @@ export default async function OnboardingPage() {
     (user.user_metadata?.name as string | undefined) ??
     "";
 
-  const { data: routes } = await supabase
-    .from("routes")
-    .select("slug, dest_name, name")
-    .eq("is_active", true);
+  const popular = await searchDestinations("");
 
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-lg flex-col px-margin-mobile pb-stack-lg pt-stack-lg">
@@ -45,12 +43,7 @@ export default async function OnboardingPage() {
         </p>
       </header>
 
-      <OnboardingForm
-        suggestedName={suggestedName}
-        destinations={
-          routes?.map((r) => r.dest_name) ?? ["Meerut"]
-        }
-      />
+      <OnboardingForm suggestedName={suggestedName} popular={popular} />
     </main>
   );
 }

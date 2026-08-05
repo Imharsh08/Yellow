@@ -117,6 +117,54 @@ export function kmToSteps(km: number): number {
   return Math.round(km * 1400);
 }
 
+/**
+ * Sustained walking pace on the yatra, in km/h.
+ *
+ * Deliberately below a fit walker's ~5 km/h: kanwariyas carry a kanwar,
+ * walk in dense crowds, and stop at shivirs. 3.5 km/h is closer to what
+ * the route actually yields over a full day, so the estimate doesn't
+ * flatter and then disappoint.
+ */
+export const WALKING_KMH = 3.5;
+
+/** Rough walking time for a distance, in minutes. */
+export function kmToMinutes(km: number, kmh: number = WALKING_KMH): number {
+  if (km <= 0 || kmh <= 0) return 0;
+  return Math.round((km / kmh) * 60);
+}
+
+/**
+ * Human-readable walking time: "40 min", "3 hr 20 min", "2 days 4 hr".
+ *
+ * Past ~10 walking hours it switches to days, assuming 8 hours of walking
+ * per day — a multi-day figure like "36 hr" is not how anyone plans a
+ * yatra.
+ */
+export function formatDuration(minutes: number): string {
+  if (minutes < 1) return "Arrived";
+  if (minutes < 60) return `${minutes} min`;
+
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+
+  if (hours < 10) {
+    return mins > 0 ? `${hours} hr ${mins} min` : `${hours} hr`;
+  }
+
+  const WALKING_HOURS_PER_DAY = 8;
+  const days = Math.floor(hours / WALKING_HOURS_PER_DAY);
+  const restHours = hours % WALKING_HOURS_PER_DAY;
+
+  if (days < 1) return `${hours} hr`;
+  const dayLabel = days === 1 ? "1 day" : `${days} days`;
+  return restHours > 0 ? `${dayLabel} ${restHours} hr` : dayLabel;
+}
+
+/** Convenience: walking time for a distance, already formatted. */
+export function formatWalkingTime(km: number): string {
+  return formatDuration(kmToMinutes(km));
+}
+
 export function formatKm(km: number): string {
   if (km < 1) return `${Math.round(km * 1000)} m`;
   return `${km.toFixed(1)} km`;

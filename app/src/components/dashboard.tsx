@@ -4,7 +4,12 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useGeolocation } from "@/lib/use-geolocation";
-import { locateOnRoute, formatKm, kmToSteps } from "@/lib/geo";
+import {
+  locateOnRoute,
+  formatKm,
+  kmToSteps,
+  formatWalkingTime,
+} from "@/lib/geo";
 import type { Checkpoint, Route, UserProgress } from "@/lib/types";
 import { WeatherCard } from "@/components/weather-card";
 import { AnimatedNumber } from "@/components/animated-number";
@@ -144,9 +149,23 @@ export function Dashboard({
           />
         </div>
 
-        <p className="mt-stack-sm text-body-md text-on-surface-variant">
+        {!done && (
+          <p className="mt-stack-sm flex items-center justify-center gap-1.5 text-body-lg font-semibold text-on-surface">
+            <span
+              className="material-symbols-outlined text-[18px] text-primary"
+              aria-hidden="true"
+            >
+              schedule
+            </span>
+            About {formatWalkingTime(showing.kmRemaining)} of walking left
+          </p>
+        )}
+
+        <p className="mt-2 text-body-md text-on-surface-variant">
           {formatKm(showing.kmCovered)} walked ·{" "}
           {kmToSteps(showing.kmCovered).toLocaleString("en-IN")} steps
+          {!done &&
+            ` · ${kmToSteps(showing.kmRemaining).toLocaleString("en-IN")} steps to go`}
         </p>
 
         {/* Location status — honest about what the number is based on. */}

@@ -2,21 +2,24 @@
 
 import { useActionState, useState } from "react";
 import { completeOnboarding, type OnboardingState } from "./actions";
+import { DestinationPicker } from "@/components/destination-picker";
+import type { DestinationOption } from "./search-destinations";
 
 const initialState: OnboardingState = {};
 
 export function OnboardingForm({
   suggestedName,
-  destinations,
+  popular,
 }: {
   suggestedName: string;
-  destinations: string[];
+  popular: DestinationOption[];
 }) {
   const [state, formAction, pending] = useActionState(
     completeOnboarding,
     initialState,
   );
   const [locationGranted, setLocationGranted] = useState<boolean | null>(null);
+  const [destination, setDestination] = useState<DestinationOption | null>(null);
 
   // FR-2: location permission is requested at onboarding. Asking here —
   // with the reason visible on screen — converts far better than a cold
@@ -77,25 +80,38 @@ export function OnboardingForm({
       </div>
 
       <div>
-        <label
-          htmlFor="destination"
-          className="mb-2 block text-body-md font-semibold text-on-surface"
-        >
+        <span className="mb-2 block text-body-md font-semibold text-on-surface">
           Where are you walking to?
-        </label>
-        <select
-          id="destination"
-          name="destination"
-          required
-          defaultValue={destinations[0]}
-          className="h-touch-target w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 text-body-lg text-on-surface outline-none focus:ring-[3px] focus:ring-primary-container"
-        >
-          {destinations.map((d) => (
-            <option key={d} value={d}>
-              {d}
-            </option>
-          ))}
-        </select>
+        </span>
+        <DestinationPicker
+          popular={popular}
+          selected={destination}
+          onSelect={setDestination}
+        />
+
+        {/* The picker is a controlled component, so the chosen values are
+            carried into the form action as hidden fields. */}
+        {destination && (
+          <>
+            <input
+              type="hidden"
+              name="destination_id"
+              value={destination.id ?? ""}
+            />
+            <input
+              type="hidden"
+              name="destination_name"
+              value={destination.name}
+            />
+            <input
+              type="hidden"
+              name="destination_area"
+              value={destination.area ?? ""}
+            />
+            <input type="hidden" name="destination_lat" value={destination.lat} />
+            <input type="hidden" name="destination_lng" value={destination.lng} />
+          </>
+        )}
       </div>
 
       {/* FR-2: location permission, with the reason stated up front. */}
@@ -157,10 +173,14 @@ export function OnboardingForm({
 
       <button
         type="submit"
-        disabled={pending}
+        disabled={pending || !destination}
         className="h-touch-target w-full rounded-full bg-primary-container text-body-lg font-semibold text-on-primary-container shadow-[0_4px_20px_rgba(255,153,51,0.25)] active:scale-95 disabled:opacity-60"
       >
-        {pending ? "Starting your yatra…" : "Start my yatra"}
+        {pending
+          ? "Planning your yatra…"
+          : destination
+            ? "Start my yatra"
+            : "Choose your destination"}
       </button>
 
       <p className="text-center text-body-md text-on-surface-variant">

@@ -67,34 +67,33 @@ The app lives at the repo root (`package.json` is top-level), so Vercel's
 default **Root Directory** of `/` is correct — leave it blank. Reference
 material lives in `docs/` and is not part of the build.
 
-### Cloudflare — blocked, config kept for later
+### Cloudflare — not supported
 
-`wrangler.jsonc` and `open-next.config.ts` are committed and correct, but
-**this app cannot deploy to Cloudflare Workers today**:
+**Deploy this app to Vercel, not Cloudflare.** Both Cloudflare options
+were tried and neither works:
 
-- `src/proxy.ts` (auth gating + Supabase session refresh) runs on the
-  Node runtime. Next 16 mandates that and rejects `export const runtime`
-  in a proxy file.
-- The OpenNext Cloudflare adapter explicitly does not support Node
-  middleware.
+- **Pages** serves static files only. Every route here is server-rendered
+  (auth, Supabase queries, server actions), so there is nothing for Pages
+  to serve.
+- **Workers** needs the OpenNext adapter, which explicitly does not
+  support Node middleware. `src/proxy.ts` (auth gating + Supabase session
+  refresh) runs on the Node runtime, and Next 16 mandates that and
+  rejects `export const runtime` in a proxy file. The two requirements
+  are mutually exclusive; the adapter build fails with
+  `Node.js middleware is not currently supported`.
 
-The two requirements are mutually exclusive, so the adapter build fails
-with `Node.js middleware is not currently supported`.
+The adapter config was removed from the repo because its presence makes
+Cloudflare auto-detect OpenNext and run `wrangler deploy` on every push,
+which then fails.
 
-Cloudflare Pages is doubly wrong for this app — Pages serves static files
-only, and every route here is server-rendered.
+**If you connected a Cloudflare project to this repo, delete it** —
+otherwise it keeps building and failing alongside Vercel, and its failure
+emails will drown out real problems.
 
-**To switch once OpenNext adds Node middleware support:** confirm at
-<https://opennext.js.org/cloudflare> that the limitation is gone, then
-
-```bash
-npm run cf:preview    # test locally in the workerd runtime
-npm run cf:deploy
-```
-
-Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` as
-Worker variables, and add the Workers URL to Supabase → Authentication →
-URL Configuration.
+To revisit later, check <https://opennext.js.org/cloudflare> for Node
+middleware support, then reinstall `@opennextjs/cloudflare` and `wrangler`
+and restore `wrangler.jsonc` / `open-next.config.ts` from git history
+(commit `289a06e`).
 
 The alternative — deleting `proxy.ts` and gating auth in each page — works
 on Cloudflare but loses edge session refresh and makes it possible to

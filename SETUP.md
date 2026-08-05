@@ -23,6 +23,8 @@ Open **SQL Editor** in the Supabase dashboard and run these three files
 | 1 | `supabase/migrations/20260805000001_init_schema.sql` | Tables, enums, RLS policies, moderation trigger |
 | 2 | `supabase/migrations/20260805000002_storage.sql` | `poi-photos` bucket + storage policies |
 | 3 | `supabase/migrations/20260805000003_seed_route.sql` | Haridwar→Meerut route + 22 checkpoints |
+| 4 | `supabase/migrations/20260805000004_destinations.sql` | Destinations table, per-user generated routes, RLS |
+| 5 | `supabase/migrations/20260805000005_seed_destinations.sql` | 7 popular temples (Meerut, Baghpat, Ghaziabad, Delhi) |
 
 Verify: **Table Editor** should show `checkpoints` with 22 rows.
 
@@ -54,7 +56,6 @@ is step 5.
 ### Vercel (current target)
 
 ```bash
-cd app
 npx vercel            # first run walks you through login + linking
 npx vercel --prod
 ```
@@ -62,9 +63,9 @@ npx vercel --prod
 When prompted, add the same two environment variables. Note the URL it
 gives you (e.g. `https://yellow-abc123.vercel.app`) — you need it next.
 
-Set **Root Directory** to `app` if you deploy via the Vercel dashboard
-rather than the CLI — the repo root holds the BRD and Stitch mockups, not
-the app.
+The app lives at the repo root (`package.json` is top-level), so Vercel's
+default **Root Directory** of `/` is correct — leave it blank. Reference
+material lives in `docs/` and is not part of the build.
 
 ### Cloudflare — blocked, config kept for later
 
